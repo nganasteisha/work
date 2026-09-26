@@ -1934,3 +1934,330 @@ renderCalendar();
  */
 
 initFirebase();
+/* =========================================================
+   ВИБІР ОСОБИСТОГО ГРАФІКА ПРАЦІВНИКА
+   ========================================================= */
+
+(function () {
+
+    const PROFILE_KEY = "selectedWorkEmployee";
+
+    let selectedEmployee =
+        localStorage.getItem(PROFILE_KEY) || "";
+
+    let profileSelect = null;
+    let profileName = null;
+
+
+    /* =========================================================
+       СТВОРЕННЯ ВИБОРУ ПРАЦІВНИКА
+       ========================================================= */
+
+    function createEmployeeSwitcher() {
+
+        if (document.getElementById("profileEmployeeSelect")) {
+            return;
+        }
+
+        const employeesButton =
+            document.getElementById("employeesButton");
+
+        if (!employeesButton) {
+            return;
+        }
+
+        const header =
+            employeesButton.closest(".header");
+
+        if (!header) {
+            return;
+        }
+
+        /* Контейнер справа */
+
+        const actions =
+            document.createElement("div");
+
+        actions.className =
+            "header-actions";
+
+        /* Перемикач */
+
+        const switcher =
+            document.createElement("div");
+
+        switcher.className =
+            "profile-switcher";
+
+        const label =
+            document.createElement("span");
+
+        label.textContent =
+            "Графік:";
+
+        profileSelect =
+            document.createElement("select");
+
+        profileSelect.id =
+            "profileEmployeeSelect";
+
+        switcher.appendChild(label);
+        switcher.appendChild(profileSelect);
+
+        /* Назва під заголовком */
+
+        const headerText =
+            header.querySelector("div");
+
+        if (headerText) {
+
+            profileName =
+                document.createElement("div");
+
+            profileName.className =
+                "current-profile-name";
+
+            headerText.appendChild(profileName);
+        }
+
+        /* Переносимо кнопку працівників */
+
+        header.insertBefore(
+            actions,
+            employeesButton
+        );
+
+        actions.appendChild(switcher);
+        actions.appendChild(employeesButton);
+
+
+        /* Зміна працівника */
+
+        profileSelect.addEventListener(
+            "change",
+            function () {
+
+                selectedEmployee =
+                    profileSelect.value;
+
+                localStorage.setItem(
+                    PROFILE_KEY,
+                    selectedEmployee
+                );
+
+                updateProfileName();
+
+                /* У вікні додавання зміни */
+
+                if (employeeSelect) {
+                    employeeSelect.value =
+                        selectedEmployee;
+                }
+
+                /* Перемальовуємо календар */
+
+                renderCalendar();
+            }
+        );
+    }
+
+
+    /* =========================================================
+       ОНОВЛЕННЯ СПИСКУ
+       ========================================================= */
+
+    function updateEmployeeSwitcher() {
+
+        if (!profileSelect) {
+            return;
+        }
+
+        profileSelect.innerHTML = "";
+
+        if (!Array.isArray(data.employees)) {
+            return;
+        }
+
+        /* Якщо збережений працівник ще існує */
+
+        if (
+            selectedEmployee &&
+            data.employees.includes(selectedEmployee)
+        ) {
+
+            /* залишаємо його */
+
+        } else {
+
+            /* Перший працівник за замовчуванням */
+
+            selectedEmployee =
+                data.employees[0] || "";
+
+            if (selectedEmployee) {
+
+                localStorage.setItem(
+                    PROFILE_KEY,
+                    selectedEmployee
+                );
+            }
+        }
+
+        data.employees.forEach(
+            function (employee) {
+
+                const option =
+                    document.createElement("option");
+
+                option.value =
+                    employee;
+
+                option.textContent =
+                    employee;
+
+                profileSelect.appendChild(
+                    option
+                );
+            }
+        );
+
+        profileSelect.value =
+            selectedEmployee;
+
+        if (employeeSelect) {
+
+            employeeSelect.value =
+                selectedEmployee;
+        }
+
+        updateProfileName();
+    }
+
+
+    /* =========================================================
+       НАЗВА ГРАФІКА
+       ========================================================= */
+
+    function updateProfileName() {
+
+        if (!profileName) {
+            return;
+        }
+
+        if (selectedEmployee) {
+
+            profileName.textContent =
+                "Особистий графік: " +
+                selectedEmployee;
+
+        } else {
+
+            profileName.textContent =
+                "Оберіть працівника";
+        }
+    }
+
+
+    /* =========================================================
+       ЗАПАМ'ЯТОВУЄМО ВИБІР
+       ========================================================= */
+
+    const oldRenderEmployees =
+        renderEmployees;
+
+    renderEmployees =
+        function () {
+
+            oldRenderEmployees();
+
+            createEmployeeSwitcher();
+
+            updateEmployeeSwitcher();
+        };
+
+
+    /* =========================================================
+       ПОКАЗУЄМО ТІЛЬКИ ОБРАНОГО ПРАЦІВНИКА
+       ========================================================= */
+
+    const oldRenderCalendar =
+        renderCalendar;
+
+    renderCalendar =
+        function () {
+
+            oldRenderCalendar();
+
+            if (!selectedEmployee) {
+                return;
+            }
+
+            const shifts =
+                document.querySelectorAll(".shift");
+
+            shifts.forEach(
+                function (shiftElement) {
+
+                    const employeeElement =
+                        shiftElement.querySelector(
+                            ".shift-employee"
+                        );
+
+                    const employee =
+                        employeeElement
+                            ? employeeElement.textContent.trim()
+                            : "";
+
+                    if (
+                        employee === selectedEmployee
+                    ) {
+
+                        shiftElement.style.display =
+                            "";
+
+                    } else {
+
+                        shiftElement.style.display =
+                            "none";
+                    }
+                }
+            );
+        };
+
+
+    /* =========================================================
+       ПРИ ДОДАВАННІ ЗМІНИ —
+       АВТОМАТИЧНО ПОТОЧНИЙ ПРАЦІВНИК
+       ========================================================= */
+
+    if (calendar) {
+
+        calendar.addEventListener(
+            "click",
+            function () {
+
+                if (
+                    employeeSelect &&
+                    selectedEmployee
+                ) {
+
+                    employeeSelect.value =
+                        selectedEmployee;
+                }
+            },
+            true
+        );
+    }
+
+
+    /* =========================================================
+       ЗАПУСК
+       ========================================================= */
+
+    createEmployeeSwitcher();
+
+    updateEmployeeSwitcher();
+
+    renderCalendar();
+
+})();

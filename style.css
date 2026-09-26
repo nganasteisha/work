@@ -1658,3 +1658,52 @@ body {
         width: 100%;
     }
 }
+/* ===== ПЕРЕМИКАЧ І ПРАЦІВНИКИ В ОДИН РЯД ===== */
+
+@media (max-width: 800px) {
+
+    .header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 8px;
+        padding: 16px 14px;
+    }
+
+    .header-actions {
+        display: flex;
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 6px;
+        flex-shrink: 0;
+    }
+
+    .profile-switcher {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        padding: 7px 6px;
+        border-radius: 10px;
+        font-size: 9px;
+        white-space: nowrap;
+    }
+
+    .profile-switcher select {
+        font-size: 11px;
+        font-weight: 800;
+        max-width: 65px;
+        padding: 0;
+    }
+
+    .employees-button {
+        padding: 9px 10px !important;
+        font-size: 10px !important;
+        border-radius: 10px !important;
+        white-space: nowrap;
+    }
+
+    .current-profile-name {
+        display: none;
+    }
+}

@@ -1547,3 +1547,33 @@ body {
         gap: 2px;
     }
 }
+/* ===== КАРТКИ ЗМІН НЕ ВИХОДЯТЬ ЗА КЛІТИНКУ ===== */
+
+.day {
+    min-width: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.shifts {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.shift {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.shift-store,
+.shift-employee {
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

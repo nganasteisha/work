@@ -1466,3 +1466,84 @@ body {
         white-space: nowrap;
     }
 }
+/* ===== КОМПАКТНИЙ КАЛЕНДАР НА ТЕЛЕФОНАХ ===== */
+
+@media (max-width: 800px) {
+
+    .calendar-container {
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-top: 12px;
+    }
+
+    .day {
+        min-height: 96px;
+        padding: 4px;
+    }
+
+    .day-number {
+        font-size: 11px;
+        min-width: 22px;
+        height: 22px;
+        margin-bottom: 5px;
+    }
+
+    .shift {
+        padding: 5px;
+        border-radius: 6px;
+    }
+
+    .shift-store {
+        font-size: 7px;
+        margin-bottom: 2px;
+    }
+
+    .shift-employee {
+        font-size: 10px;
+    }
+
+    .shifts {
+        gap: 3px;
+    }
+}
+
+
+/* ===== ДУЖЕ МАЛЕНЬКІ ТЕЛЕФОНИ ===== */
+
+@media (max-width: 390px) {
+
+    .calendar-container {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    .day {
+        min-height: 82px;
+        padding: 3px;
+    }
+
+    .day-number {
+        font-size: 10px;
+        min-width: 20px;
+        height: 20px;
+        margin-bottom: 4px;
+    }
+
+    .shift {
+        padding: 4px;
+        border-radius: 5px;
+    }
+
+    .shift-store {
+        font-size: 6px;
+        margin-bottom: 1px;
+    }
+
+    .shift-employee {
+        font-size: 9px;
+    }
+
+    .shifts {
+        gap: 2px;
+    }
+}

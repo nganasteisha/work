@@ -1406,5 +1406,63 @@ body {
 
     .confirm-buttons button {
         width: 100%;
+    } 
+/* Виправлення календаря для маленьких телефонів */
+@media (max-width: 500px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .calendar-container {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 4px;
+        padding-right: 4px;
+        box-sizing: border-box;
+    }
+
+    .weekdays,
+    .calendar {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .weekdays {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+
+    .calendar {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+
+    .weekdays div,
+    .day {
+        min-width: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .day {
+        overflow: hidden;
+    }
+
+    .shift {
+        min-width: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .shift-store,
+    .shift-employee {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 }

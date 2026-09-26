@@ -1779,3 +1779,214 @@ body {
         font-size: 15px;
     }
 }
+/* =========================================================
+   НОВИЙ КРАСИВИЙ ПЕРЕМИКАЧ ГРАФІКА
+   ========================================================= */
+
+.header-actions {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    flex-shrink: 0;
+}
+
+
+/* КНОПКА ГРАФІКА */
+
+.profile-custom-button {
+    position: relative;
+
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    padding: 0 12px;
+
+    border: 2px solid #eadcea;
+
+    border-radius: 13px;
+
+    background: #f8f2f9;
+
+    color: #8f7190;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    box-sizing: border-box;
+}
+
+
+.profile-custom-button strong {
+    color: #4a404b;
+
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+
+.profile-arrow {
+    color: #8d7190;
+
+    font-size: 18px;
+
+    line-height: 1;
+
+    margin-left: 2px;
+}
+
+
+/* ВИПАДАЮЧЕ МЕНЮ */
+
+.profile-custom-menu {
+    position: absolute;
+
+    top: calc(100% + 7px);
+
+    right: 0;
+
+    z-index: 1000;
+
+    min-width: 145px;
+
+    padding: 6px;
+
+    background: #ffffff;
+
+    border: 1px solid #eadcea;
+
+    border-radius: 13px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(110, 80, 115, 0.15);
+}
+
+
+/* ПРАЦІВНИК */
+
+.profile-menu-item {
+    display: block;
+
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: 0;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #4a404b;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+
+.profile-menu-item:hover {
+    background: #f5edf6;
+}
+
+
+.profile-menu-item.active {
+    background: #eadbea;
+
+    color: #8f7190;
+}
+
+
+/* =========================================================
+   ТЕЛЕФОН
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .header-actions {
+        display: flex;
+
+        flex-direction: row !important;
+
+        align-items: center;
+
+        gap: 6px;
+
+        flex-shrink: 0;
+    }
+
+
+    .profile-custom-button {
+        height: 38px;
+
+        padding: 0 8px;
+
+        border-radius: 11px;
+
+        font-size: 9px;
+    }
+
+
+    .profile-custom-button strong {
+        font-size: 11px;
+    }
+
+
+    .profile-arrow {
+        font-size: 15px;
+    }
+
+
+    .employees-button {
+        width: auto !important;
+
+        height: 38px;
+
+        padding: 0 10px !important;
+
+        border-radius: 10px !important;
+
+        font-size: 10px !important;
+
+        white-space: nowrap;
+    }
+
+
+    .profile-custom-menu {
+        top: calc(100% + 6px);
+
+        right: 0;
+
+        min-width: 130px;
+    }
+
+
+    .profile-menu-item {
+        padding: 9px 10px;
+
+        font-size: 12px;
+    }
+}

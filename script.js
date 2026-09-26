@@ -2290,3 +2290,67 @@ addEmployee =
 createProfileSwitcher();
 updateProfileSwitcher();
 renderCalendar();
+/* =========================================================
+   ВИПРАВЛЕННЯ СПИСКУ ПРАЦІВНИКІВ У "ГРАФІК"
+   ========================================================= */
+
+const oldRenderEmployeesForProfile = renderEmployees;
+
+renderEmployees = function () {
+
+    oldRenderEmployeesForProfile();
+
+    if (
+        typeof data !== "undefined" &&
+        Array.isArray(data.employees)
+    ) {
+
+        /* Настя за замовчуванням */
+        if (
+            !selectedProfile &&
+            data.employees.includes("Настя")
+        ) {
+            selectedProfile = "Настя";
+
+            localStorage.setItem(
+                PROFILE_KEY,
+                selectedProfile
+            );
+        }
+
+        if (
+            typeof updateProfileSwitcher ===
+            "function"
+        ) {
+            updateProfileSwitcher();
+        }
+    }
+};
+
+
+/* Оновити меню після завантаження Firebase */
+
+setTimeout(function () {
+
+    if (
+        typeof updateProfileSwitcher ===
+        "function"
+    ) {
+        updateProfileSwitcher();
+    }
+
+}, 1000);
+
+
+/* Ще раз перевірити після повного завантаження */
+
+setTimeout(function () {
+
+    if (
+        typeof updateProfileSwitcher ===
+        "function"
+    ) {
+        updateProfileSwitcher();
+    }
+
+}, 3000);

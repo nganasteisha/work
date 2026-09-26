@@ -1577,3 +1577,84 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+/* =========================================================
+   ПЕРЕМИКАЧ ОСОБИСТОГО ГРАФІКА
+   ========================================================= */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.profile-switcher {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #f7f0f8;
+    border: 1px solid #eadfea;
+    border-radius: 13px;
+    padding: 7px 10px;
+    color: #8f7190;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.profile-switcher select {
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: #4a404b;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    max-width: 110px;
+}
+
+.current-profile-name {
+    margin-top: 5px;
+    color: #a477a5;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ТЕЛЕФОН
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .header {
+        align-items: center;
+    }
+
+    .header-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+    }
+
+    .profile-switcher {
+        padding: 6px 8px;
+        border-radius: 10px;
+        font-size: 9px;
+        justify-content: center;
+    }
+
+    .profile-switcher select {
+        font-size: 10px;
+        max-width: 75px;
+    }
+
+    .current-profile-name {
+        font-size: 10px;
+        margin-top: 3px;
+    }
+
+    .employees-button {
+        width: 100%;
+    }
+}

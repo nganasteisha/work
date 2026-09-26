@@ -1707,3 +1707,75 @@ body {
         display: none;
     }
 }
+/* ===== ГАРНИЙ ВИГЛЯД ВИБОРУ ПРАЦІВНИКА ===== */
+
+.profile-switcher {
+    position: relative;
+    background: #f8f2f9 !important;
+    border: 2px solid #eadcea !important;
+    border-radius: 13px !important;
+    height: 42px;
+    box-sizing: border-box;
+}
+
+.profile-switcher select {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+
+    color: #4a404b !important;
+    font-weight: 800 !important;
+
+    padding-right: 20px !important;
+    cursor: pointer;
+}
+
+/* Забираємо стандартну стрілку Safari */
+.profile-switcher select::-ms-expand {
+    display: none;
+}
+
+/* Наша красива стрілочка */
+.profile-switcher::after {
+    content: "⌄";
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-55%);
+    
+    color: #765f77;
+    font-size: 17px;
+    font-weight: 800;
+    
+    pointer-events: none;
+}
+
+
+/* ===== ТЕЛЕФОН ===== */
+
+@media (max-width: 800px) {
+
+    .profile-switcher {
+        height: 38px !important;
+        padding: 0 8px !important;
+        border-radius: 11px !important;
+    }
+
+    .profile-switcher select {
+        width: 75px !important;
+        max-width: 75px !important;
+        height: 34px !important;
+
+        font-size: 11px !important;
+        padding-right: 18px !important;
+    }
+
+    .profile-switcher::after {
+        right: 7px;
+        font-size: 15px;
+    }
+}
